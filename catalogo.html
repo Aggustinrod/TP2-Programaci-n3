@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Catalogo</title>
+
 </head>
 <body>
 
-<script type="module" src="/src/main.js"></script>
+    <header class="barra">
+      <span class="logo">Rick y Morty Personajes</span>
+    
+
+      <nav>
+        <ul>    
+          <li><a href="./catalogo.html">Catálogo</a></li>
+          <li><a href="./index.html">Inicio</a></li>
+        
+    
+        </ul>
+      </nav>
+    </header>
+
+    <main class="Container">
+
+        <h2>Personajes del multiverso</h2>
+
+        <div id="grid-catalogo" class="grid-tarjetas"></div>
+
+        <div id="mensaje-estado" class="estado">Cargando personajes...</div>
+
+
+
+    </main>
+
+    <footer class="pie">
+
+        <p>MortyDex</p>
+        <p>© 2026</p>
+        <p>rickandmortyapi</p>
+    </footer>
+
+
+
+<script type="module" src="./src/catalogo.js"></script>
 </body>
 </html>
