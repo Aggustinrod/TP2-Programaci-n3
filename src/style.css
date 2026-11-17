@@ -193,8 +193,13 @@ h2 {
 }
 
 .contenedor-buscador {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;       
+  margin-bottom: 2.5rem;  
   width: 100%;
+  max-width: 600px;       
 }
 
 .contenedor-buscador input {
@@ -216,6 +221,13 @@ h2 {
 
 .contenedor-buscador input::placeholder {
   color: var(--color-texto-suave);
+}
+
+#btn-buscar {
+  width: fit-content;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .tarjeta img {

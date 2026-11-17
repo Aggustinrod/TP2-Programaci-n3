@@ -10,8 +10,7 @@ async function TraerInfo() {
         if (!respuesta.ok) throw new Error("Error en la respuesta");
         
         const data = await respuesta.json();
-        
-        
+           
         todosLosPersonajes = data.results;
         mostrarPersonajes(todosLosPersonajes);
         
@@ -26,61 +25,62 @@ async function TraerInfo() {
 
 
 function mostrarPersonajes(personajes) {
-    const gridContainer = document.getElementById("grid-catalogo");
-    const mensajeEstado = document.getElementById("mensaje-estado");
+    const $gridContainer = document.getElementById("grid-catalogo");
+    const $mensajeEstado = document.getElementById("mensaje-estado");
     
-    
-    gridContainer.innerHTML = "";
+    $gridContainer.innerHTML = "";
 
-  
     if (personajes.length === 0) {
-        if (mensajeEstado) {
-            mensajeEstado.textContent = "No se encontraron personajes con ese nombre.";
+        if ($mensajeEstado) {
+            $mensajeEstado.textContent = "No se encontraron personajes con ese nombre.";
         }
         return;
     }
 
-    
-    if (mensajeEstado) {
-        mensajeEstado.style.display = "none";
+    if ($mensajeEstado) {
+        $mensajeEstado.style.display = "none";
     }
 
-    
     personajes.forEach(personaje => {
-        const tarjeta = document.createElement("div");
-        tarjeta.classList.add("tarjeta");
+        const $tarjeta = document.createElement("div");
+        $tarjeta.classList.add("tarjeta");
 
-        tarjeta.innerHTML = `
+        $tarjeta.innerHTML = `
             <img src="${personaje.image}" alt="${personaje.name}">
             <div class="tarjeta-info">
                 <h3>${personaje.name}</h3>
+                <p>Origen: ${personaje.origin.name}</p>
                 <p>Estado: <strong>${personaje.status}</strong></p>
+                <p>Visto en: ${personaje.location.name}</p>
                 <p>Especie: ${personaje.species}</p>
             </div>
         `;
 
-        gridContainer.appendChild(tarjeta);
+        $gridContainer.appendChild($tarjeta);
     });
 }
 
 
-const inputBuscador = document.getElementById("buscador");
+const $inputBuscador = document.getElementById("buscador");
+const $btnBuscar = document.getElementById("btn-buscar");
 
-if (inputBuscador) {
-    inputBuscador.addEventListener("input", (e) => {
-        const textoBusqueda = e.target.value.toLowerCase().trim();
+function ejecutarBusqueda() {
+    if (!$inputBuscador) return;
+    
+    const $textoBusqueda = $inputBuscador.value.toLowerCase().trim();
 
-        
-        const personajesFiltrados = todosLosPersonajes.filter(personaje => 
-            personaje.name.toLowerCase().includes(textoBusqueda)
-        );
+    const $personajesFiltrados = todosLosPersonajes.filter(personaje => 
+        personaje.name.toLowerCase().includes($textoBusqueda)
+    );
 
-       
-        mostrarPersonajes(personajesFiltrados);
-    });
+    mostrarPersonajes($personajesFiltrados);
 }
 
+if ($btnBuscar) {
+    $btnBuscar.addEventListener("click", ejecutarBusqueda);
+}
 
+  
 TraerInfo();
 
 
