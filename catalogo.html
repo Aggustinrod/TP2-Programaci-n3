@@ -9,7 +9,7 @@
 <body>
 
     <header class="barra">
-      <span class="logo">Rick y Morty Personajes</span>
+      <span class="logo">MortyDex</span>
     
 
       <nav>
@@ -22,16 +22,25 @@
       </nav>
     </header>
 
+
+    
+
     <main class="Container">
+      <h2>Personajes del multiverso</h2>
 
-        <h2>Personajes del multiverso</h2>
+    
+      <div class="contenedor-buscador">
+        <input
+         type="text"
+         id="buscador"
+         placeholder="Buscar tu personaje favorito...">
+         
+      </div>
 
-        <div id="grid-catalogo" class="grid-tarjetas"></div>
+     
 
-        <div id="mensaje-estado" class="estado">Cargando personajes...</div>
-
-
-
+      <div id="grid-catalogo" class="grid-tarjetas"></div>
+      <div id="mensaje-estado" class="estado">Cargando personajes...</div>
     </main>
 
     <footer class="pie">

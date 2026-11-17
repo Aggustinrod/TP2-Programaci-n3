@@ -192,6 +192,55 @@ h2 {
   color: var(--color-texto-suave);
 }
 
+.contenedor-buscador {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.contenedor-buscador input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contenedor-buscador input:focus {
+  border-color: var(--color-portal);
+  box-shadow: 0 0 0 3px rgba(151, 206, 76, 0.2);
+}
+
+.contenedor-buscador input::placeholder {
+  color: var(--color-texto-suave);
+}
+
+.tarjeta img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.tarjeta-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tarjeta-info h3 {
+  font-size: 1.2rem;
+  color: var(--color-texto);
+}
+
+.tarjeta-info p {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+}
+
 
 .pie {
   background-color: var(--color-superficie);
