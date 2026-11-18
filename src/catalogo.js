@@ -3,22 +3,28 @@ import './style.css';
 let todosLosPersonajes = [];
 
 
+
 async function TraerInfo() {
     try {
-        const respuesta = await fetch("https://rickandmortyapi.com/api/character");
+        let personajesTotales = [];
+
+        for (let i = 1; i <= 5; i++) {
+            const respuesta = await fetch(`https://rickandmortyapi.com/api/character/?page=${i}`);
+            
+            if (!respuesta.ok) throw new Error(`Error al cargar la página ${i}`);
+            
+            const data = await respuesta.json();
+            personajesTotales = personajesTotales.concat(data.results);
+        }
         
-        if (!respuesta.ok) throw new Error("Error en la respuesta");
-        
-        const data = await respuesta.json();
-           
-        todosLosPersonajes = data.results;
+        todosLosPersonajes = personajesTotales;
         mostrarPersonajes(todosLosPersonajes);
         
     } catch (error) {
         console.error("Hubo un problema:", error);
-        const mensajeEstado = document.getElementById("mensaje-estado");
-        if (mensajeEstado) {
-            mensajeEstado.textContent = "Error al cargar los personajes.";
+        const $mensajeEstado = document.getElementById("mensaje-estado");
+        if ($mensajeEstado) {
+            $mensajeEstado.textContent = "Error al cargar los personajes.";
         }
     }
 }
@@ -62,7 +68,7 @@ function mostrarPersonajes(personajes) {
 
 
 const $inputBuscador = document.getElementById("buscador");
-const $btnBuscar = document.getElementById("btn-buscar");
+const $formBuscar = document.getElementById("form-buscar");
 
 function ejecutarBusqueda() {
     if (!$inputBuscador) return;
@@ -76,9 +82,23 @@ function ejecutarBusqueda() {
     mostrarPersonajes($personajesFiltrados);
 }
 
-if ($btnBuscar) {
-    $btnBuscar.addEventListener("click", ejecutarBusqueda);
+if ($formBuscar) {
+        $formBuscar.addEventListener("submit", (e) => {
+        
+        e.preventDefault();
+
+        if (!$inputBuscador) return;
+
+        const $textoBusqueda = $inputBuscador.value.toLowerCase().trim();
+
+        const $personajesFiltrados = todosLosPersonajes.filter(personaje => 
+            personaje.name.toLowerCase().includes($textoBusqueda)
+        );
+
+        mostrarPersonajes($personajesFiltrados);
+    });
 }
+
 
   
 TraerInfo();
