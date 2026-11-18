@@ -8,7 +8,7 @@ async function TraerInfo() {
     try {
         let personajesTotales = [];
 
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 2; i++) {
             const respuesta = await fetch(`https://rickandmortyapi.com/api/character/?page=${i}`);
             
             if (!respuesta.ok) throw new Error(`Error al cargar la página ${i}`);
